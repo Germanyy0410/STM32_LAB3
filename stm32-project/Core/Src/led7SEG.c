@@ -13,8 +13,8 @@ void display7SEG(int count_1, int count_2){
 	GPIOB->ODR = num_1[count_1] | num_2[count_2];
 }
 
-int led_1 = 5;
-int led_2 = 2;
+int led_1 = 6;
+int led_2 = 3;
 int stat_led_1 = RED;
 int stat_led_2 = GREEN;
 

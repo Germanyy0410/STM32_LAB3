@@ -103,11 +103,7 @@ int main(void)
   setTimer1(1000);
   setTimer2(1000);
   setTimer_LED(1000);
-
-  HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(DOT1_GPIO_Port, DOT1_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(DOT2_GPIO_Port, DOT2_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(DOT3_GPIO_Port, DOT3_Pin, GPIO_PIN_RESET);
+  timer_LED_flag = 1;
 
   while (1)
   {

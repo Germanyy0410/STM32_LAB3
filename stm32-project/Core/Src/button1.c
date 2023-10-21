@@ -21,10 +21,18 @@ static int TimerForKeyPress = 200;
 void handleKeyInput1() {
     KeyReg1Counter++;
     
-    if (KeyReg1Counter == 1) {
+    if (KeyReg1Counter == 1 || KeyReg1Counter > 4) {
+        KeyReg1Counter = 1;
+
         status1 = INIT;
         status2 = INIT;
         status3 = AUTOMATIC;
+
+        led_1 = setTraffic[RED] / 1000;
+        led_2 = setTraffic[GREEN] / 1000;
+        stat_led_1 = RED;
+        stat_led_2 = GREEN;
+        timer_LED_flag = 1;
     }
 
     if (KeyReg1Counter == 2 || KeyReg1Counter == 3|| KeyReg1Counter == 4) {
@@ -34,18 +42,6 @@ void handleKeyInput1() {
         setTimer3(500);
         setTimer4(500);
         trafficOff();
-    }
-    
-    if (KeyReg1Counter > 4) {
-        KeyReg1Counter = 1;
-        status1 = INIT;
-        status2 = INIT;
-        status3 = AUTOMATIC;
-
-        led_1 = setTraffic[RED] / 1000;
-        led_2 = setTraffic[GREEN] / 1000;
-        stat_led_1 = RED;
-        stat_led_2 = GREEN;
     }
 
     if (KeyReg1Counter == 1) {
