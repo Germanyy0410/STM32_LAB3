@@ -57,9 +57,7 @@ void fsm_run_1() {
     switch(status1) {
         case INIT:
             Red_1_On();
-
             status1 = AUTO_RED;
-            setTimer1(setTraffic[RED]);
             break;
 
         case AUTO_RED:
@@ -68,7 +66,6 @@ void fsm_run_1() {
             if (switch_mode_1 == 1) {
                 switch_mode_1 = 0;
                 status1 = AUTO_GREEN;
-                setTimer1(setTraffic[GREEN]);
             }
             break;
 
@@ -78,7 +75,6 @@ void fsm_run_1() {
             if (switch_mode_1 == 1) {
                 switch_mode_1 = 0;
                 status1 = AUTO_YELLOW;
-                setTimer1(setTraffic[YELLOW]);
             }
             break;
 
@@ -88,7 +84,6 @@ void fsm_run_1() {
             if (switch_mode_1 == 1) {
                 switch_mode_1 = 0;
                 status1 = AUTO_RED;
-                setTimer1(setTraffic[RED]);
             }
             break;
             
@@ -119,7 +114,6 @@ void fsm_run_2() {
             Green_2_On();
 
             status2 = AUTO_GREEN;
-            setTimer2(setTraffic[GREEN]);
             break;
 
         case AUTO_RED:
@@ -128,7 +122,6 @@ void fsm_run_2() {
             if (switch_mode_2 == 1) {
                 switch_mode_2 = 0;
                 status2 = AUTO_GREEN;
-                setTimer2(setTraffic[GREEN]);
             }
             break;
             
@@ -138,7 +131,6 @@ void fsm_run_2() {
             if (switch_mode_2 == 1) {
                 switch_mode_2 = 0;
                 status2 = AUTO_YELLOW;
-                setTimer2(setTraffic[YELLOW]);
             }
             break;
 
@@ -148,7 +140,6 @@ void fsm_run_2() {
             if (switch_mode_2 == 1) {
                 switch_mode_2 = 0;
                 status2 = AUTO_RED;
-                setTimer2(setTraffic[RED]);
             }
             break;
         
