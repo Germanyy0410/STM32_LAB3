@@ -27,17 +27,9 @@
 #define AUTO_RED        100
 #define AUTO_YELLOW     200
 #define AUTO_GREEN      300
-#define MAN_RED         700
-#define MAN_YELLOW      800
-#define MAN_GREEN       900
 
 #define MODIFY          10
 #define AUTOMATIC       20
-#define MANUAL          30
-#define WAIT            40
-
-#define ON              50
-#define OFF             60
 
 extern int status1;
 extern int status2;

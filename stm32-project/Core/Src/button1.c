@@ -32,8 +32,8 @@ void handleKeyInput1() {
         led_2 = setTraffic[GREEN] / 1000;
         stat_led_1 = RED;
         stat_led_2 = GREEN;
-        switch_mode_1 = OFF;
-        switch_mode_2 = OFF;
+        switch_mode_1 = 0;
+        switch_mode_2 = 0;
         setTimer_LED(1000);
     }
 
