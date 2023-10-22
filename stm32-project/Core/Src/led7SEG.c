@@ -75,7 +75,6 @@ void update7SEG() {
     switch (status3) {
         case AUTOMATIC:
             countDownLED();
-            
             break;
 
         case MODIFY:

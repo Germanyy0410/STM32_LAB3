@@ -19,38 +19,32 @@ static int TimerForKeyPress = 200;
 
 void handleKeyInput3() {
     if (KeyReg1Counter == 2) {
-        setTraffic[RED] = TimerModify[RED];
         KeyReg1Counter = 1;
 
-        if (setTraffic[RED] - setTraffic[YELLOW] - 1 > 0) {
-            setTraffic[GREEN] = setTraffic[RED] - setTraffic[YELLOW] - 1;
+        if (TimerModify[RED] - TimerModify[YELLOW] - 1000 > 0) {
+            setTraffic[RED] = TimerModify[RED];
+            setTraffic[GREEN] = setTraffic[RED] - setTraffic[YELLOW] - 1000;
             TimerModify[GREEN] = setTraffic[GREEN];
-        } else {
-
         }
     }
 
     else if (KeyReg1Counter == 3) {
-        setTraffic[YELLOW] = TimerModify[YELLOW];
         KeyReg1Counter = 1;
 
-        if (setTraffic[YELLOW] + setTraffic[GREEN] + 1 <= 9) {
-            setTraffic[RED] = setTraffic[YELLOW] + setTraffic[GREEN] + 1;
+        if (TimerModify[YELLOW] + TimerModify[GREEN] + 1000 <= 9000) {
+            setTraffic[YELLOW] = TimerModify[YELLOW];
+            setTraffic[RED] = setTraffic[YELLOW] + setTraffic[GREEN] + 1000;
             TimerModify[RED] = setTraffic[RED];
-        } else {
-
         }
     }
 
     else if (KeyReg1Counter == 4) {
-        setTraffic[GREEN] = TimerModify[GREEN];
         KeyReg1Counter = 1;
 
-        if (setTraffic[YELLOW] + setTraffic[GREEN] + 1 <= 9) {
-            setTraffic[RED] = setTraffic[YELLOW] + setTraffic[GREEN] + 1;
+        if (TimerModify[YELLOW] + TimerModify[GREEN] + 1000 <= 9000) {
+            setTraffic[GREEN] = TimerModify[GREEN];
+            setTraffic[RED] = setTraffic[YELLOW] + setTraffic[GREEN] + 1000;
             TimerModify[RED] = setTraffic[RED];
-        } else {
-
         }
     }
 
