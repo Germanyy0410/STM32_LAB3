@@ -65,7 +65,8 @@ void fsm_run_1() {
         case AUTO_RED:
             Red_1_On();
 
-            if (timer1_flag ==  1) {
+            if (switch_mode_1 == 1) {
+                switch_mode_1 = 0;
                 status1 = AUTO_GREEN;
                 setTimer1(setTraffic[GREEN]);
             }
@@ -74,7 +75,8 @@ void fsm_run_1() {
         case AUTO_GREEN:
             Green_1_On();
 
-            if (timer1_flag ==  1) {
+            if (switch_mode_1 == 1) {
+                switch_mode_1 = 0;
                 status1 = AUTO_YELLOW;
                 setTimer1(setTraffic[YELLOW]);
             }
@@ -83,7 +85,8 @@ void fsm_run_1() {
         case AUTO_YELLOW:
             Yellow_1_On();
 
-            if (timer1_flag ==  1) {
+            if (switch_mode_1 == 1) {
+                switch_mode_1 = 0;
                 status1 = AUTO_RED;
                 setTimer1(setTraffic[RED]);
             }
@@ -122,7 +125,8 @@ void fsm_run_2() {
         case AUTO_RED:
             Red_2_On();
 
-            if (timer2_flag ==  1) {
+            if (switch_mode_2 == 1) {
+                switch_mode_2 = 0;
                 status2 = AUTO_GREEN;
                 setTimer2(setTraffic[GREEN]);
             }
@@ -131,7 +135,8 @@ void fsm_run_2() {
         case AUTO_GREEN:
             Green_2_On();
 
-            if (timer2_flag ==  1) {
+            if (switch_mode_2 == 1) {
+                switch_mode_2 = 0;
                 status2 = AUTO_YELLOW;
                 setTimer2(setTraffic[YELLOW]);
             }
@@ -140,7 +145,8 @@ void fsm_run_2() {
         case AUTO_YELLOW:
             Yellow_2_On();
 
-            if (timer2_flag ==  1) {
+            if (switch_mode_2 == 1) {
+                switch_mode_2 = 0;
                 status2 = AUTO_RED;
                 setTimer2(setTraffic[RED]);
             }

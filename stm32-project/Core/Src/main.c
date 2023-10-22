@@ -103,7 +103,7 @@ int main(void)
   setTimer1(1000);
   setTimer2(1000);
   setTimer_LED(1000);
-  timer_LED_flag = 1;
+  // timer_LED_flag = 1;
 
   while (1)
   {

@@ -17,10 +17,18 @@ int led_1 = 6;
 int led_2 = 3;
 int stat_led_1 = RED;
 int stat_led_2 = GREEN;
+int switch_mode_1 = 0, switch_mode_2 = 0;
 
 void countDownLED() {
+    display7SEG(led_1, led_2);
+
     if (timer_LED_flag == 1) {
-        if (led_1 < 0) {
+        led_1--;
+        led_2--;
+
+        if (led_1 < 0) {            
+            switch_mode_1 = 1;
+            
             switch (stat_led_1) {
                 case RED:
                     stat_led_1 = GREEN;
@@ -38,6 +46,8 @@ void countDownLED() {
         }
 
         if (led_2 < 0) {
+            switch_mode_2 = 1;
+            
             switch (stat_led_2) {
                 case RED:
                     stat_led_2 = GREEN;
@@ -53,11 +63,6 @@ void countDownLED() {
                     break;
             }
         }
-
-        display7SEG(led_1, led_2);
-
-        led_1--;
-        led_2--;
 
         setTimer_LED(1000);
     }

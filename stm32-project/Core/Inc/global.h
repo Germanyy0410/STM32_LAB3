@@ -36,6 +36,9 @@
 #define MANUAL          30
 #define WAIT            40
 
+#define ON              50
+#define OFF             60
+
 extern int status1;
 extern int status2;
 extern int status3;

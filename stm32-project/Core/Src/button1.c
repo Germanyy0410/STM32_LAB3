@@ -32,7 +32,9 @@ void handleKeyInput1() {
         led_2 = setTraffic[GREEN] / 1000;
         stat_led_1 = RED;
         stat_led_2 = GREEN;
-        timer_LED_flag = 1;
+        switch_mode_1 = OFF;
+        switch_mode_2 = OFF;
+        setTimer_LED(1000);
     }
 
     if (KeyReg1Counter == 2 || KeyReg1Counter == 3|| KeyReg1Counter == 4) {

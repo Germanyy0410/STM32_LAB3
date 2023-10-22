@@ -24,6 +24,7 @@ void handleKeyInput3() {
 
         if (setTraffic[RED] - setTraffic[YELLOW] - 1 > 0) {
             setTraffic[GREEN] = setTraffic[RED] - setTraffic[YELLOW] - 1;
+            TimerModify[GREEN] = setTraffic[GREEN];
         } else {
 
         }
@@ -35,6 +36,7 @@ void handleKeyInput3() {
 
         if (setTraffic[YELLOW] + setTraffic[GREEN] + 1 <= 9) {
             setTraffic[RED] = setTraffic[YELLOW] + setTraffic[GREEN] + 1;
+            TimerModify[RED] = setTraffic[RED];
         } else {
 
         }
@@ -46,8 +48,9 @@ void handleKeyInput3() {
 
         if (setTraffic[YELLOW] + setTraffic[GREEN] + 1 <= 9) {
             setTraffic[RED] = setTraffic[YELLOW] + setTraffic[GREEN] + 1;
+            TimerModify[RED] = setTraffic[RED];
         } else {
-            
+
         }
     }
 
@@ -55,9 +58,18 @@ void handleKeyInput3() {
     HAL_GPIO_WritePin(DOT1_GPIO_Port, DOT1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(DOT2_GPIO_Port, DOT2_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(DOT3_GPIO_Port, DOT3_Pin, GPIO_PIN_RESET);
+
     status1 = INIT;
     status2 = INIT;
     status3 = AUTOMATIC;
+
+    led_1 = setTraffic[RED] / 1000;
+    led_2 = setTraffic[GREEN] / 1000;
+    stat_led_1 = RED;
+    stat_led_2 = GREEN;
+    switch_mode_1 = OFF;
+    switch_mode_2 = OFF;
+    setTimer_LED(1000);
 }
 
 void subKeyProcess3() {

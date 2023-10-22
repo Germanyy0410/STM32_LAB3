@@ -14,6 +14,8 @@ extern int led_1;
 extern int led_2;
 extern int stat_led_1;
 extern int stat_led_2;
+extern int switch_mode_1;
+extern int switch_mode_2;
 
 void display7SEG(int count_1, int count_2);
 void countdownLED();
