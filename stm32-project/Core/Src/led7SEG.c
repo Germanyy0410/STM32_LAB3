@@ -72,38 +72,30 @@ int tempCounter;
 int timer1, timer2;
 
 void update7SEG() {
-    switch (status3) {
-        case AUTOMATIC:
-            countDownLED();
-            break;
+    if (status == INIT || status == RED_GREEN || status == RED_YELLOW || status == GREEN_RED || status == YELLOW_RED) {
+        countDownLED();
+    } else {
+        if (KeyReg1Counter == 1) {
+            status = INIT;
+        }
 
-        case MODIFY:
-            if (KeyReg1Counter == 1) {
-                status1 = INIT;
-                status2 = INIT;
-                status3 = AUTOMATIC;
-            }
+        else if (KeyReg1Counter == 2) {
+            tempCounter = TimerModify[RED];
+        }
 
-            else if (KeyReg1Counter == 2) {
-                tempCounter = TimerModify[RED];
-            }
+        else if (KeyReg1Counter == 3) {
+            tempCounter = TimerModify[YELLOW];
+        }
 
-            else if (KeyReg1Counter == 3) {
-                tempCounter = TimerModify[YELLOW];
-            }
+        else if (KeyReg1Counter == 4) {
+            tempCounter = TimerModify[GREEN];
+        } 
 
-            else if (KeyReg1Counter == 4) {
-                tempCounter = TimerModify[GREEN];
-            } 
+        timer1 = KeyReg1Counter;        // Display MODE
+        timer2 = tempCounter / 1000;    // Display value
 
-            timer1 = KeyReg1Counter;        // Display MODE
-            timer2 = tempCounter / 1000;    // Display value
-            status1 = MODIFY;
-            status2 = MODIFY;
-
-            display7SEG(timer1, timer2);
-            
-            break;
+        display7SEG(timer1, timer2);
+        
     }
 }
 

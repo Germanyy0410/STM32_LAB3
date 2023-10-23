@@ -10,9 +10,7 @@
 
 #include "main.h"
 #include "software_timer.h"
-#include "button1.h"
-#include "button2.h"
-#include "button3.h"
+#include "button.h"
 #include "fsm.h"
 #include "led7SEG.h"
 
@@ -24,13 +22,19 @@
 #define YELLOW          1
 #define GREEN           2
 #define INIT            3
-#define AUTO_RED        100
-#define AUTO_YELLOW     200
-#define AUTO_GREEN      300
+#define MAN_RED        100
+#define MAN_YELLOW     200
+#define MAN_GREEN      300
+
+#define RED_GREEN       150
+#define RED_YELLOW      250
+#define GREEN_RED       350
+#define YELLOW_RED      450
 
 #define MODIFY          10
 #define AUTOMATIC       20
 
+extern int status;
 extern int status1;
 extern int status2;
 extern int status3;

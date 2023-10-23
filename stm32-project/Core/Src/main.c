@@ -22,9 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "button1.h"
-#include "button2.h"
-#include "button3.h"
+#include "button.h"
 #include "fsm.h"
 #include "global.h"
 #include "led7SEG.h"
@@ -103,28 +101,39 @@ int main(void)
   setTimer1(1000);
   setTimer2(1000);
   setTimer_LED(1000);
+  HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, GPIO_PIN_SET);
+        HAL_GPIO_WritePin(DOT1_GPIO_Port, DOT1_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(DOT2_GPIO_Port, DOT2_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(DOT3_GPIO_Port, DOT3_Pin, GPIO_PIN_RESET);
   // timer_LED_flag = 1;
-
   while (1)
   {
     /* USER CODE END WHILE */
+    if (KeyReg1Counter == 1) {
+        HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, GPIO_PIN_SET);
+        HAL_GPIO_WritePin(DOT1_GPIO_Port, DOT1_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(DOT2_GPIO_Port, DOT2_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(DOT3_GPIO_Port, DOT3_Pin, GPIO_PIN_RESET);
+    } else if (KeyReg1Counter == 2) {
+        HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(DOT1_GPIO_Port, DOT1_Pin, GPIO_PIN_SET);
+        HAL_GPIO_WritePin(DOT2_GPIO_Port, DOT2_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(DOT3_GPIO_Port, DOT3_Pin, GPIO_PIN_RESET);
+    } else if (KeyReg1Counter == 3) {
+        HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(DOT1_GPIO_Port, DOT1_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(DOT2_GPIO_Port, DOT2_Pin, GPIO_PIN_SET);
+        HAL_GPIO_WritePin(DOT3_GPIO_Port, DOT3_Pin, GPIO_PIN_RESET);
+    } else if (KeyReg1Counter == 4) {
+        HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(DOT1_GPIO_Port, DOT1_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(DOT2_GPIO_Port, DOT2_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(DOT3_GPIO_Port, DOT3_Pin, GPIO_PIN_SET);
+    }
 
     /* USER CODE BEGIN 3 */
-    fsm_run_1();
-    fsm_run_2();
+    fsm_run();
     update7SEG();
-
-    if (isButton1Pressed()) {
-      handleKeyInput1();
-    }
-
-    if (isButton2Pressed()) {
-      handleKeyInput2();
-    }
-
-    if (isButton3Pressed()) {
-      handleKeyInput3();
-    }
 
   }
   /* USER CODE END 3 */
@@ -227,13 +236,13 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, LED_RED_1_Pin|LED_YELLOW_1_Pin|LED_GREEN_1_Pin|LED_RED_2_Pin
                           |LED_YELLOW_2_Pin|LED_GREEN_2_Pin|DOT_Pin|DOT1_Pin
-                          |DOT2_Pin|DOT3_Pin, GPIO_PIN_RESET);
+                          |DOT2_Pin|DOT3_Pin|DISPLAY_1_Pin|DISPLAY_2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, a_Pin|b_Pin|c_Pin|k_Pin
                           |l_Pin|m_Pin|n_Pin|d_Pin
                           |e_Pin|f_Pin|g_Pin|h_Pin
-                          |i_Pin|j_Pin, GPIO_PIN_SET);
+                          |i_Pin|j_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : Button_1_Pin Button_2_Pin Button_3_Pin */
   GPIO_InitStruct.Pin = Button_1_Pin|Button_2_Pin|Button_3_Pin;
@@ -243,10 +252,10 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : LED_RED_1_Pin LED_YELLOW_1_Pin LED_GREEN_1_Pin LED_RED_2_Pin
                            LED_YELLOW_2_Pin LED_GREEN_2_Pin DOT_Pin DOT1_Pin
-                           DOT2_Pin DOT3_Pin */
+                           DOT2_Pin DOT3_Pin DISPLAY_1_Pin DISPLAY_2_Pin */
   GPIO_InitStruct.Pin = LED_RED_1_Pin|LED_YELLOW_1_Pin|LED_GREEN_1_Pin|LED_RED_2_Pin
                           |LED_YELLOW_2_Pin|LED_GREEN_2_Pin|DOT_Pin|DOT1_Pin
-                          |DOT2_Pin|DOT3_Pin;
+                          |DOT2_Pin|DOT3_Pin|DISPLAY_1_Pin|DISPLAY_2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -270,9 +279,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
   timerRun();
-  getKeyInput1();
-  getKeyInput2();
-  getKeyInput3();
+  getKeyInput();
 }
 /* USER CODE END 4 */
 

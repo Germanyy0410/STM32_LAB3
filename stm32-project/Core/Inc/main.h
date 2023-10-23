@@ -98,6 +98,10 @@ void Error_Handler(void);
 #define DOT2_GPIO_Port GPIOA
 #define DOT3_Pin GPIO_PIN_10
 #define DOT3_GPIO_Port GPIOA
+#define DISPLAY_1_Pin GPIO_PIN_11
+#define DISPLAY_1_GPIO_Port GPIOA
+#define DISPLAY_2_Pin GPIO_PIN_12
+#define DISPLAY_2_GPIO_Port GPIOA
 #define d_Pin GPIO_PIN_3
 #define d_GPIO_Port GPIOB
 #define e_Pin GPIO_PIN_4

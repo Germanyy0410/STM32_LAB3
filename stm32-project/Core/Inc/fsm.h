@@ -21,6 +21,7 @@ void Green_2_On();
 
 void trafficOff();
 
+void fsm_run();
 void fsm_run_1();
 void fsm_run_2();
 
