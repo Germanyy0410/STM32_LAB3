@@ -56,118 +56,101 @@ void trafficOff() {
     HAL_GPIO_WritePin(LED_YELLOW_2_GPIO_Port, LED_YELLOW_2_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(LED_GREEN_2_GPIO_Port, LED_GREEN_2_Pin, GPIO_PIN_RESET);
 }
-/*
-void fsm_run_1() {
-    switch(status1) {
-        case INIT:
-            Red_1_On();
-            status1 = AUTO_RED;
-            break;
 
-        case AUTO_RED:
-            Red_1_On();
-
-            if (switch_mode_1 == 1) {
-                switch_mode_1 = 0;
-                status1 = AUTO_GREEN;
-            }
-            break;
-
-        case AUTO_GREEN:
-            Green_1_On();
-
-            if (switch_mode_1 == 1) {
-                switch_mode_1 = 0;
-                status1 = AUTO_YELLOW;
-            }
-            break;
-
-        case AUTO_YELLOW:
-            Yellow_1_On();
-
-            if (switch_mode_1 == 1) {
-                switch_mode_1 = 0;
-                status1 = AUTO_RED;
-            }
-            break;
-            
-        case MODIFY:
-            if (KeyReg1Counter == 2) {
-                if (timer3_flag == 1) {
-                    HAL_GPIO_TogglePin(LED_RED_1_GPIO_Port, LED_RED_1_Pin);
-                    setTimer3(500);
-                }
-            } else if (KeyReg1Counter == 3) {
-                if (timer3_flag == 1) {
-                    HAL_GPIO_TogglePin(LED_YELLOW_1_GPIO_Port, LED_YELLOW_1_Pin);
-                    setTimer3(500);
-                }
-            } else if (KeyReg1Counter == 4) {
-                if (timer3_flag == 1) {
-                    HAL_GPIO_TogglePin(LED_GREEN_1_GPIO_Port, LED_GREEN_1_Pin);
-                    setTimer3(500);
-                }
-            }
-            break;
-    }
-}
-
-void fsm_run_2() {
-    switch(status2) {
-        case INIT:
-            Green_2_On();
-
-            status2 = AUTO_GREEN;
-            break;
-
-        case AUTO_RED:
-            Red_2_On();
-
-            if (switch_mode_2 == 1) {
-                switch_mode_2 = 0;
-                status2 = AUTO_GREEN;
-            }
-            break;
-            
-        case AUTO_GREEN:
-            Green_2_On();
-
-            if (switch_mode_2 == 1) {
-                switch_mode_2 = 0;
-                status2 = AUTO_YELLOW;
-            }
-            break;
-
-        case AUTO_YELLOW:
-            Yellow_2_On();
-
-            if (switch_mode_2 == 1) {
-                switch_mode_2 = 0;
-                status2 = AUTO_RED;
-            }
-            break;
+void handleKeyInput(int index) {
+    if (index == 0) {
+        KeyReg1Counter++;
         
-        case MODIFY:
-            if (KeyReg1Counter == 2) {
-                if (timer4_flag == 1) {
-                    HAL_GPIO_TogglePin(LED_RED_2_GPIO_Port, LED_RED_2_Pin);
-                    setTimer4(500);
-                }
-            } else if (KeyReg1Counter == 3) {
-                if (timer4_flag == 1) {
-                    HAL_GPIO_TogglePin(LED_YELLOW_2_GPIO_Port, LED_YELLOW_2_Pin);
-                    setTimer4(500);
-                }
-            } else if (KeyReg1Counter == 4) {
-                if (timer4_flag == 1) {
-                    HAL_GPIO_TogglePin(LED_GREEN_2_GPIO_Port, LED_GREEN_2_Pin);
-                    setTimer4(500);
+        if (KeyReg1Counter == 1 || KeyReg1Counter > 4) {
+            KeyReg1Counter = 1;
+
+            status = INIT;
+
+            led_1 = setTraffic[RED] / 1000;
+            led_2 = setTraffic[GREEN] / 1000;
+            stat_led_1 = RED;
+            stat_led_2 = GREEN;
+            switch_mode_1 = 0;
+            switch_mode_2 = 0;
+            setTimer_LED(1000);
+        } else if (KeyReg1Counter == 2 || KeyReg1Counter == 3|| KeyReg1Counter == 4) {
+            setTimer3(500);
+            trafficOff();
+        }
+
+    }
+    else if (index == 1) {        
+        if (KeyReg1Counter == 2) {
+            TimerModify[RED] += 1000;
+
+            if (TimerModify[RED] > 9000) {
+                TimerModify[RED] = 0;
+            }
+        } 
+
+        else if (KeyReg1Counter == 3) {
+            TimerModify[YELLOW] += 1000;
+
+            if (TimerModify[YELLOW] > 9000) {
+                TimerModify[YELLOW] = 0;
+            }
+        } 
+
+        else if (KeyReg1Counter == 4) {
+            TimerModify[GREEN] += 1000;
+
+            if (TimerModify[GREEN] > 9000) {
+                TimerModify[GREEN] = 0;
+            }
+        }
+    }
+    else if (index == 2) {
+        if (KeyReg1Counter == 2) {
+            KeyReg1Counter = 1;
+
+            if (TimerModify[RED] - TimerModify[YELLOW] - 1000 > 0) {
+                setTraffic[RED] = TimerModify[RED];
+                setTraffic[GREEN] = setTraffic[RED] - setTraffic[YELLOW] - 1000;
+                TimerModify[GREEN] = setTraffic[GREEN];
+            }
+        }
+
+        else if (KeyReg1Counter == 3) {
+            KeyReg1Counter = 1;
+
+            if (TimerModify[YELLOW] + TimerModify[GREEN] + 1000 <= 9000) {
+                setTraffic[YELLOW] = TimerModify[YELLOW];
+                setTraffic[RED] = setTraffic[YELLOW] + setTraffic[GREEN] + 1000;
+                TimerModify[RED] = setTraffic[RED];
                 }
             }
-            break;
+
+            else if (KeyReg1Counter == 4) {
+                KeyReg1Counter = 1;
+
+                if (TimerModify[YELLOW] + TimerModify[GREEN] + 1000 <= 9000) {
+                    setTraffic[GREEN] = TimerModify[GREEN];
+                    setTraffic[RED] = setTraffic[YELLOW] + setTraffic[GREEN] + 1000;
+                    TimerModify[RED] = setTraffic[RED];
+                }
+            }
+
+        HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, GPIO_PIN_SET);
+        HAL_GPIO_WritePin(DOT1_GPIO_Port, DOT1_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(DOT2_GPIO_Port, DOT2_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(DOT3_GPIO_Port, DOT3_Pin, GPIO_PIN_RESET);
+
+        status = INIT;
+
+        led_1 = setTraffic[RED] / 1000;
+        led_2 = setTraffic[GREEN] / 1000;
+        stat_led_1 = RED;
+        stat_led_2 = GREEN;
+        switch_mode_1 = 0;
+        switch_mode_2 = 0;
+        setTimer_LED(1000);
     }
 }
-*/
 
 void fsm_run() {
     switch (status) {

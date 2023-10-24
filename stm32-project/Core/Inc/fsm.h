@@ -20,9 +20,8 @@ void Yellow_2_On();
 void Green_2_On();
 
 void trafficOff();
+void handleKeyInput(int index);
 
 void fsm_run();
-void fsm_run_1();
-void fsm_run_2();
 
 #endif /* INC_FSM_H_ */

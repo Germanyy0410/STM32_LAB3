@@ -7,6 +7,9 @@
 
 #include "global.h"
 
+int TimerModify[3] = { redTimer, yellowTimer, greenTimer };
+int setTraffic[3] = { redTimer, yellowTimer, greenTimer };
+
 int status = INIT;
 
 int status1 = INIT;

@@ -39,4 +39,7 @@ extern int status1;
 extern int status2;
 extern int status3;
 
+extern int TimerModify[3];
+extern int setTraffic[3];
+
 #endif /* INC_GLOBAL_H_ */
