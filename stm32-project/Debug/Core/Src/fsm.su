@@ -1,0 +1,7 @@
+fsm.c:10:6:Red_Green	8	static
+fsm.c:20:6:Red_Yellow	8	static
+fsm.c:30:6:Green_Red	8	static
+fsm.c:40:6:Yellow_Red	8	static
+fsm.c:50:6:trafficOff	8	static
+fsm.c:60:6:handleKeyInput	16	static
+fsm.c:155:6:fsm_run	8	static

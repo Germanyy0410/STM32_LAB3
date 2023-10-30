@@ -1,0 +1,29 @@
+# # Ignore all files and directories except those explicitly allowed
+# *
+# !*/
+
+# # Allow specific files
+# !proteus-project/proteus-lab3.pdsprj
+
+# !stm32-project/Core/Inc/button.h
+# !stm32-project/Core/Src/button.c
+# !stm32-project/Core/Inc/button1.h
+# !stm32-project/Core/Src/button1.c
+# !stm32-project/Core/Inc/button2.h
+# !stm32-project/Core/Src/button2.c
+# !stm32-project/Core/Inc/button3.h
+# !stm32-project/Core/Src/button3.c
+# !stm32-project/Core/Inc/fsm.h
+# !stm32-project/Core/Src/fsm.c
+# !stm32-project/Core/Inc/global.h
+# !stm32-project/Core/Src/global.c
+# !stm32-project/Core/Inc/led7SEG.h
+# !stm32-project/Core/Src/led7SEG.c
+# !stm32-project/Core/Inc/main.h
+# !stm32-project/Core/Src/main.c
+# !stm32-project/Core/Inc/software_timer.h
+# !stm32-project/Core/Src/software_timer.c
+# !traffic-light-project.ioc
+
+# !fsm-system.png
+# !schematic.png

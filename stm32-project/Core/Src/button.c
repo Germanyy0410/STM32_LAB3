@@ -9,7 +9,7 @@
 int button_flag[3] = {0, 0, 0};
 int KeyReg1Counter = 1;
 
-static int KeyReg0[3] = {NORMAL_STATE, NORMAL_STATE, NORMAL_STATE};
+static int KeyReg0[3] = {NORMAL_STATE, NORMAL_STATE, NORMAL_STATE}; 
 static int KeyReg1[3] = {NORMAL_STATE, NORMAL_STATE, NORMAL_STATE};
 static int KeyReg2[3] = {NORMAL_STATE, NORMAL_STATE, NORMAL_STATE};
 
